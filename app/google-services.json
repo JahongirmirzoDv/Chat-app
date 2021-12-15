@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "157183317984",
+    "project_id": "pdp-gram-chsd",
+    "storage_bucket": "pdp-gram-chsd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157183317984:android:db7d192c1cf674ca51fd85",
+        "android_client_info": {
+          "package_name": "com.chsd.pdpgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157183317984-8be22o1fu5tf81n3glu57d89q3fsqa3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABv5rEEMF56VLTbNEVBsqxnqUo2jKyj0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157183317984-8be22o1fu5tf81n3glu57d89q3fsqa3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
