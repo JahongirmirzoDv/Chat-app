@@ -12,6 +12,8 @@ import com.chsd.pdpgram.models.Message
 import com.chsd.pdpgram.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.messaging.FirebaseMessaging
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,13 +54,18 @@ class UsersFragment : Fragment() {
         firebaseDatabase = FirebaseDatabase.getInstance()
         firebaseAuth = FirebaseAuth.getInstance()
 
+
+
         reference = firebaseDatabase.getReference("Users")
         val photoUrl = firebaseAuth.currentUser?.photoUrl
         val displayName = firebaseAuth.currentUser?.displayName
         val email = firebaseAuth.currentUser?.email
         val uid = firebaseAuth.currentUser?.uid
         var status = "online"
-        val user = User(displayName, email, uid, photoUrl.toString(), status)
+
+//        updateValue(AppFirebaseMessaginService())
+        var user = User(displayName, email, uid, photoUrl.toString(), status,"")
+        reference.child(uid!!).setValue(user)
 
         val reference1 = firebaseDatabase.getReference("Messages")
         reference1
@@ -78,7 +85,7 @@ class UsersFragment : Fragment() {
             })
 
         //add user with uid
-        reference.child(uid!!).setValue(user)
+
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val children = snapshot.children
@@ -98,7 +105,6 @@ class UsersFragment : Fragment() {
                     }
 
                     override fun getUsers(userlist: ArrayList<String>) {
-
                     }
                 }, true, mlist)
                 binding.userRv.adapter = rvAdapter
@@ -108,14 +114,30 @@ class UsersFragment : Fragment() {
 
             }
         })
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                var firebaseToken = it.result.toString()
+                updateValue(firebaseToken)
+            }
+        }
         return binding.root
+    }
+
+    fun updateValue(token: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val reference = firebaseDatabase.getReference("Users").child(currentUser?.uid!!)
+        val hashMap = HashMap<String, Any>()
+//            val hashMap2 = HashMap<String, Any>()
+        hashMap["token"] = token
+//            hashMap2["token"] = token.toString()
+        reference.updateChildren(hashMap)
     }
 
     companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
-         *  
+         *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
          * @return A new instance of fragment UsersFragment.

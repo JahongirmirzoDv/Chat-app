@@ -50,6 +50,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.android.gms:play-services-auth:20.0.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-analytics:20.0.0'
 
     //circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -60,4 +62,9 @@ dependencies {
 
     //edittext mask
     implementation 'ru.egslava:MaskedEditText:1.0.5'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
 }

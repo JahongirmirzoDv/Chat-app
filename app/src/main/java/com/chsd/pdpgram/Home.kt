@@ -3,6 +3,7 @@ package com.chsd.pdpgram
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +36,8 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
         titleList = listOf("Users", "Groups")
         auth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()

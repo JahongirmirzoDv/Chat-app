@@ -8,6 +8,7 @@ class User : Serializable {
     var uid: String? = null
     var photoUrl: String? = null
     var status: String? = null
+    var token: String? = null
 
     constructor(displayName: String?, email: String?, uid: String?, photoUrl: String?) {
         this.displayName = displayName
@@ -27,6 +28,22 @@ class User : Serializable {
         email: String?,
         uid: String?,
         photoUrl: String?,
+        status: String?,
+        token: String?
+    ) {
+        this.displayName = displayName
+        this.email = email
+        this.uid = uid
+        this.photoUrl = photoUrl
+        this.status = status
+        this.token = token
+    }
+
+    constructor(
+        displayName: String?,
+        email: String?,
+        uid: String?,
+        photoUrl: String?,
         status: String?
     ) {
         this.displayName = displayName
@@ -35,5 +52,4 @@ class User : Serializable {
         this.photoUrl = photoUrl
         this.status = status
     }
-
 }

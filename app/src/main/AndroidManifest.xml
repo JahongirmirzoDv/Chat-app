@@ -3,7 +3,7 @@
     package="com.chsd.pdpgram">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -33,6 +33,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".notification.Messaging"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

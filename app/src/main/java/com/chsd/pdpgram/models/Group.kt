@@ -9,15 +9,7 @@ class Group : Serializable {
     var key: String? = null
 
 
-    constructor(
-        name: String?,
-        userList: ArrayList<String>?,
-        messagesList: ArrayList<Message>?,
-    ) {
-        this.name = name
-        this.userList = userList
-        this.messagesList = messagesList
-    }
+
 
     constructor(name: String?, userList: ArrayList<String>?) {
         this.name = name
@@ -25,10 +17,19 @@ class Group : Serializable {
     }
 
 
-    constructor()
-    constructor(key: String?) {
+    constructor(
+        name: String?,
+        userList: ArrayList<String>?,
+        messagesList: ArrayList<Message>?,
+        key: String?
+    ) {
+        this.name = name
+        this.userList = userList
+        this.messagesList = messagesList
         this.key = key
     }
+
+    constructor()
 
 
 }

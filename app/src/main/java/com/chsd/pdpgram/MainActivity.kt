@@ -1,6 +1,7 @@
 package com.chsd.pdpgram
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,11 +14,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Status
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.HashMap
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         auth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -48,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             startActivity(Intent(this, Home::class.java))
             finish()
-        }else{
+        } else {
             googleSignInClient.signOut()
         }
 
@@ -70,8 +74,11 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             val reference = firebaseDatabase.getReference("Users").child(auth.currentUser?.uid!!)
             val hashMap = HashMap<String, Any>()
+//            val hashMap2 = HashMap<String, Any>()
             hashMap["status"] = status
+//            hashMap2["token"] = token.toString()
             reference.updateChildren(hashMap)
+//            reference.updateChildren(hashMap2)
         }
     }
 
@@ -220,7 +227,6 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-
                 }
             }
     }
