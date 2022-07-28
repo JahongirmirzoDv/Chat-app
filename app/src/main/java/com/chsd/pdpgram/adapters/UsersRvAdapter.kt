@@ -27,12 +27,13 @@ class UsersRvAdapter(
 
     inner class Vh(var itemview: UserIttemBinding) : RecyclerView.ViewHolder(itemview.root) {
         fun Bind(user: User, position: Int) {
+            firebaseAuth = FirebaseAuth.getInstance()
             userlist = ArrayList()
             userlist.clear()
             Glide.with(itemView).load(user.photoUrl).into(itemview.profileImage)
             itemview.name.text = user.displayName
             for (i in mlist) {
-                if (user.uid == i.receiver || list[position].uid == i.sender) {
+                if (user.uid == i.receiver && firebaseAuth.currentUser?.uid == i.sender || user.uid == i.sender && firebaseAuth.currentUser?.uid == i.receiver ) {
                     itemview.title.text = i.message
                     itemview.time.text = i.date
                 }

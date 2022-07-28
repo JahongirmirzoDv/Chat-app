@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        UserStatus("offline1.1")
+        UserStatus("offline")
         Log.d(TAG, "onPause: ")
     }
 

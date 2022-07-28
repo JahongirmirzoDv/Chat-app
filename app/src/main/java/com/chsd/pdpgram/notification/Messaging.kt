@@ -30,7 +30,6 @@ class Messaging : FirebaseMessagingService() {
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
-
         Log.d(TAG, "onMessageReceived: ${p0.notification?.title}")
         Log.d(TAG, "onMessageReceived: ${p0.notification?.body}")
         Log.d(TAG, "onMessageReceived: ${p0.data}")
